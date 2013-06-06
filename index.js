@@ -5,11 +5,14 @@ function isEco(file) {
   return /\.eco$/.test(file)
 }
 
-function compile(file, data) {
+function compile(file, data, debug) {
+  if (debug) {
+    data = "<!-- Template: " + file + " -->";
+  }
   return "module.exports = " + eco.precompile(data);
 }
 
-module.exports = function(file) {
+var ecoify = function(file) {
   if (!isEco(file)) return through();
 
   var data = '';
@@ -19,7 +22,7 @@ module.exports = function(file) {
   function end () {
     var src;
     try {
-      src = compile(file, data);
+      src = compile(file, data, ecoify.debug);
     } catch (error) {
       this.emit('error', error);
     }
@@ -27,3 +30,7 @@ module.exports = function(file) {
     this.queue(null);
   }
 }
+
+ecoify.debug = false
+
+module.exports = ecoify
