@@ -7,7 +7,7 @@ function isEco(file) {
 
 function compile(file, data, debug) {
   if (debug) {
-    data = "<% console.log('Rendered', '" + file + "') %>"
+    data = "<% if (window.DEBUG) { console.log('Rendered:', '" + file + "') } %>" + data;
   }
   return "module.exports = " + eco.precompile(data);
 }
