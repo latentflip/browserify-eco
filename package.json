@@ -1,6 +1,6 @@
 {
   "name": "browserify-eco",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "browserify v2 plugin for eco templates",
   "main": "index.js",
   "dependencies": {
