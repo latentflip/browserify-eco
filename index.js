@@ -6,8 +6,8 @@ function isEco(file) {
 }
 
 function compile(file, data, debug) {
-  if (debug) {
-    data = "<% console.log('Rendered:', '" + file + "') if window.DEBUG %>" + data;
+  if (true) {
+    data = "<% console.log(FloatApp.template_log_prefix..., '"+file+"') if window.DEBUG %>" + data;
   }
   return "module.exports = " + eco.precompile(data);
 }
@@ -31,6 +31,6 @@ var ecoify = function(file) {
   }
 }
 
-ecoify.debug = false
+ecoify.debug = true
 
 module.exports = ecoify
