@@ -6,9 +6,7 @@ function isEco(file) {
 }
 
 function compile(file, data, debug) {
-  if (true) {
-    data = "<% console.log(FloatApp.template_log_prefix..., '"+file+"') if window.DEBUG %>" + data;
-  }
+  data = "<% window && window.templateLog && window.templateLog('"+file+"') %>" + data;
   return "module.exports = " + eco.precompile(data);
 }
 
